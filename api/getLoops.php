@@ -1,6 +1,6 @@
 <?php
 /**
- * Returns the list of cars.
+ * Returns a list of loops for populating the dropdown on our driver interface.
  */
 require 'connect.php';
 
@@ -8,10 +8,7 @@ $loops = [];
 
 // $loop = ($_GET['loop'] !== null) ? mysqli_real_escape_string($con, $_GET['loop']) : false ;
 
-// $sql = "SELECT * FROM Entries WHERE loop = `Green Loop`";
 $sql = sprintf('SELECT * FROM loops');
-
-// $sql = "SELECT * FROM `Entries` WHERE `Entries`.`loop`='Green Loop'";
 
 if($result = mysqli_query($con,$sql))
 {
