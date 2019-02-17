@@ -6,9 +6,10 @@ require 'connect.php';
 
 $stops = [];
 
-// $loop = ($_GET['loop'] !== null) ? mysqli_real_escape_string($con, $_GET['loop']) : false ;
+$loop = ($_GET['searchTerm'] !== null) ? mysqli_real_escape_string($con, $_GET['searchTerm']) : false ;
 
-$sql = sprintf('SELECT * FROM stops');
+
+$sql = sprintf("SELECT * FROM stops WHERE loops='".$loop."' ORDER BY displayOrder ASC ");
 
 if($result = mysqli_query($con,$sql))
 {
