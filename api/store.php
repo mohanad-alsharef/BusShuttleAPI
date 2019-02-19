@@ -11,7 +11,7 @@ if(isset($postdata) && !empty($postdata))
 
 
   // Validate.
-  if(trim($request->data->boarded) === '' || trim($request->data->stop) === '' || trim($request->data->loop) === '' || trim($request->data->driver) === '' || trim($request->data->leftBehind) === '')
+  if(trim($request->data->boarded) === '' || trim($request->data->stop) === '' || trim($request->data->timestamp) === '' || trim($request->data->loop) === '' || trim($request->data->driver) === '' || trim($request->data->leftBehind) === '')
   {
       print("Hello World");
     return http_response_code(400);
@@ -22,7 +22,8 @@ if(isset($postdata) && !empty($postdata))
   // Sanitize.
   $boarded = mysqli_real_escape_string($con, (int)$request->data->boarded);
   $stop = mysqli_real_escape_string($con, trim($request->data->stop));
-  $timestamp = date("Y-m-d H:i:s");
+  $timestamp = mysqli_real_escape_string($con, trim($request->data->timestamp));
+  // $timestamp = date("Y-m-d H:i:s");
   $date = date("Y/m/d");
   $loop = mysqli_real_escape_string($con, trim($request->data->loop));
   $driver = mysqli_real_escape_string($con, trim($request->data->driver));
