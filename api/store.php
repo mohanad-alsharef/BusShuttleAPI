@@ -11,14 +11,17 @@ if(isset($postdata) && !empty($postdata))
 
 
   // Validate.
-  if(trim($request->data->boarded) === '' || trim($request->data->stop) === '' || trim($request->data->timestamp) === '' || trim($request->data->loop) === '' || trim($request->data->driver) === '' || trim($request->data->leftBehind) === '')
+  if(trim($request->data->boarded) === '' || trim($request->data->stop) === ''
+  || trim($request->data->timestamp) === '' || trim($request->data->loop) === ''
+  || trim($request->data->driver) === '' || trim($request->data->leftBehind) === ''
+  || trim($request->data->busNumber) === '')
   {
       print("Hello World");
     return http_response_code(400);
   }
 
 
-  
+
   // Sanitize.
   $boarded = mysqli_real_escape_string($con, (int)$request->data->boarded);
   $stop = mysqli_real_escape_string($con, trim($request->data->stop));
@@ -28,11 +31,12 @@ if(isset($postdata) && !empty($postdata))
   $loop = mysqli_real_escape_string($con, trim($request->data->loop));
   $driver = mysqli_real_escape_string($con, trim($request->data->driver));
   $leftBehind = mysqli_real_escape_string($con, trim($request->data->leftBehind));
-
+  $busNumber = mysqli_real_escape_string($con, trim($request->data->busNumber));
 
 
   // Store.
-  $sql = "INSERT INTO `Entries`(`boarded`,`stop`,`timestamp`,`date`,`loop`,`driver`, `leftBehind`) VALUES ('{$boarded}','{$stop}','{$timestamp}','{$date}','{$loop}','{$driver}', '{$leftBehind}')";
+  $sql = "INSERT INTO `Entries`(`boarded`,`stop`,`timestamp`,`date`,`loop`,`driver`, `leftBehind`, `busNumber`)
+  VALUES ('{$boarded}','{$stop}','{$timestamp}','{$date}','{$loop}','{$driver}', '{$leftBehind}', '{$busNumber}')";
 
   if(mysqli_query($con,$sql))
   {
@@ -44,7 +48,8 @@ if(isset($postdata) && !empty($postdata))
       'date' => $date,
       'loop' => $loop,
       'driver' => $driver,
-      'leftBehind' => $leftBehind
+      'leftBehind' => $leftBehind,
+      'busNumber' => $busNumber
     ];
     echo json_encode(['data'=>$log]);
   }
