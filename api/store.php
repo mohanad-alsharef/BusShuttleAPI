@@ -16,7 +16,6 @@ if(isset($postdata) && !empty($postdata))
   || trim($request->data->driver) === '' || trim($request->data->leftBehind) === ''
   || trim($request->data->busNumber) === '')
   {
-      print("Hello World");
     return http_response_code(400);
   }
 
@@ -26,7 +25,6 @@ if(isset($postdata) && !empty($postdata))
   $boarded = mysqli_real_escape_string($con, (int)$request->data->boarded);
   $stop = mysqli_real_escape_string($con, trim($request->data->stop));
   $timestamp = mysqli_real_escape_string($con, trim($request->data->timestamp));
-  // $timestamp = date("Y-m-d H:i:s");
   $date = date("Y/m/d");
   $loop = mysqli_real_escape_string($con, trim($request->data->loop));
   $driver = mysqli_real_escape_string($con, trim($request->data->driver));
@@ -35,7 +33,7 @@ if(isset($postdata) && !empty($postdata))
 
 
   // Store.
-  $sql = "INSERT INTO `Entries`(`boarded`,`stop`,`timestamp`,`date`,`loop`,`driver`, `leftBehind`, `busNumber`)
+  $sql = "INSERT INTO `Entries`(`boarded`,`stop`,`timestamp`,`date`,`loop`,`driver`, `leftBehind`, `busIdentifier`)
   VALUES ('{$boarded}','{$stop}','{$timestamp}','{$date}','{$loop}','{$driver}', '{$leftBehind}', '{$busNumber}')";
 
   if(mysqli_query($con,$sql))
