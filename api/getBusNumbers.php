@@ -13,11 +13,9 @@ if($result = mysqli_query($con,$sql))
   $cr = 0;
   while($row = mysqli_fetch_assoc($result))
   {
-      // $buses[$cr]['stops'] = $row['stops'];
       $buses[$cr] = $row['busIdentifier'];
     $cr++;
   }
-
   echo json_encode(['data'=>$buses]);
 }
 else

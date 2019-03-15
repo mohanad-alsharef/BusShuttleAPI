@@ -9,7 +9,6 @@ if(isset($postdata) && !empty($postdata))
   // Extract the data.
   $request = json_decode($postdata);
 
-
   // Validate.
   if(trim($request->data->boarded) === '' || trim($request->data->stop) === ''
   || trim($request->data->timestamp) === '' || trim($request->data->loop) === ''
@@ -18,8 +17,6 @@ if(isset($postdata) && !empty($postdata))
   {
     return http_response_code(400);
   }
-
-
 
   // Sanitize.
   $boarded = mysqli_real_escape_string($con, (int)$request->data->boarded);
@@ -30,7 +27,6 @@ if(isset($postdata) && !empty($postdata))
   $driver = mysqli_real_escape_string($con, trim($request->data->driver));
   $leftBehind = mysqli_real_escape_string($con, trim($request->data->leftBehind));
   $busNumber = mysqli_real_escape_string($con, trim($request->data->busNumber));
-
 
   // Store.
   $sql = "INSERT INTO `Entries`(`boarded`,`stop`,`timestamp`,`date`,`loop`,`driver`, `leftBehind`, `busIdentifier`)

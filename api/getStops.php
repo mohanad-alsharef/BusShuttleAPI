@@ -8,7 +8,6 @@ $stops = [];
 
 $loop = ($_GET['searchTerm'] !== null) ? mysqli_real_escape_string($con, $_GET['searchTerm']) : false ;
 
-
 $sql = sprintf("SELECT * FROM stops WHERE loops='".$loop."' ORDER BY displayOrder ASC ");
 
 if($result = mysqli_query($con,$sql))
@@ -16,11 +15,9 @@ if($result = mysqli_query($con,$sql))
   $cr = 0;
   while($row = mysqli_fetch_assoc($result))
   {
-      // $stops[$cr]['stops'] = $row['stops'];
       $stops[$cr] = $row['stops'];
     $cr++;
   }
-
   echo json_encode(['data'=>$stops]);
 }
 else
