@@ -6,7 +6,7 @@ require 'connect.php';
 
 $users = [];
 
-$sql = sprintf('SELECT * FROM users');
+$sql = sprintf('SELECT * FROM users ORDER BY lastname ASC');
 
 if($result = mysqli_query($con,$sql))
 {

@@ -6,7 +6,7 @@ require 'connect.php';
 
 $loops = [];
 
-$sql = sprintf('SELECT * FROM loops');
+$sql = sprintf('SELECT * FROM loops ORDER BY loops ASC');
 
 if($result = mysqli_query($con,$sql))
 {
