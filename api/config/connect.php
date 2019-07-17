@@ -1,9 +1,9 @@
 <?php
 class Database{
-  private $host = "data.mildvariety.club";
+  private $host = "localhost";
   private $db_name = "test284829";
-  private $username = "keith289";
-  private $password = "Keithisthecoolest1";
+  private $username = "root";
+  private $password = "";
   public $conn;
  
     public function getConnection(){
