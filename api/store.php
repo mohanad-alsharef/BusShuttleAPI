@@ -1,4 +1,10 @@
 <?php
+header("Access-Control-Allow-Origin: *");
+header("Content-Type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Max-Age: 3600");
+header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+ 
 require 'connect.php';
 date_default_timezone_set('America/Indianapolis');
 // Get the posted data.
@@ -29,7 +35,7 @@ if(isset($postdata) && !empty($postdata))
   $busNumber = mysqli_real_escape_string($con, trim($request->data->busNumber));
 
   // Store.
-  $sql = "INSERT INTO `Entries`(`boarded`,`stop`,`timestamp`,`date`,`loop`,`driver`, `leftBehind`, `busIdentifier`)
+  $sql = "INSERT INTO `Entries`(`boarded`,`stop`,`t_stamp`,`date_added`,`loop`,`driver`, `left_behind`, `bus_identifier`)
   VALUES ('{$boarded}','{$stop}','{$timestamp}','{$date}','{$loop}','{$driver}', '{$leftBehind}', '{$busNumber}')";
 
   if(mysqli_query($con,$sql))
@@ -38,12 +44,12 @@ if(isset($postdata) && !empty($postdata))
     $log = [
       'boarded' => $boarded,
       'stop' => $stop,
-      'timestamp' => $timestamp,
+      't_stamp' => $timestamp,
       'date' => $date,
       'loop' => $loop,
       'driver' => $driver,
-      'leftBehind' => $leftBehind,
-      'busNumber' => $busNumber
+      'left_behind' => $leftBehind,
+      'bus_identifier' => $busNumber
     ];
     echo json_encode(['data'=>$log]);
   }
