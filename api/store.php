@@ -35,7 +35,7 @@ if(isset($postdata) && !empty($postdata))
   $busNumber = mysqli_real_escape_string($con, trim($request->data->busNumber));
 
   // Store.
-  $sql = "INSERT INTO `Entries`(`boarded`,`stop`,`t_stamp`,`date_added`,`loop`,`driver`, `left_behind`, `bus_identifier`)
+  $sql = "INSERT INTO `entries`(`boarded`,`stop`,`t_stamp`,`date_added`,`loop`,`driver`, `left_behind`, `bus_identifier`)
   VALUES ('{$boarded}','{$stop}','{$timestamp}','{$date}','{$loop}','{$driver}', '{$leftBehind}', '{$busNumber}')";
 
   if(mysqli_query($con,$sql))
