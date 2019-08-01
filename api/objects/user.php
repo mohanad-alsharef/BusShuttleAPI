@@ -1,5 +1,5 @@
 <?php
-class User{
+class UserObject{
     private $conn;
     private $table_name = "users";
     public $id;
