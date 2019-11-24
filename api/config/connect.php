@@ -1,7 +1,7 @@
 <?php
 class Database{
   private $host = "localhost";
-  private $db_name = "test284829";
+  private $db_name = "busdb";
   private $username = "root";
   private $password = "";
   public $conn;
