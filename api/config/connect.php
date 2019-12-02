@@ -1,9 +1,11 @@
 <?php
+require_once '../config.php';
+
 class Database{
-  private $host = "localhost";
-  private $db_name = "busdb";
-  private $username = "root";
-  private $password = "";
+  private $host = DB_HOST;
+  private $db_name = DB_DBNAME;
+  private $username = DB_USER;
+  private $password = DB_PASSWORD;
   public $conn;
  
     public function getConnection(){
