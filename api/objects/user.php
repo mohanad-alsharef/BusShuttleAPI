@@ -1,7 +1,7 @@
 <?php
 class UserObject{
     private $conn;
-    private $table_name = "users";
+    private $table_name = "ul_logins";
     public $id;
     public $firstname;
     public $lastname;
@@ -41,11 +41,11 @@ function create(){
 }
 
 function emailExists(){
-    $query = "SELECT id, firstname, lastname, password
+    $query = "SELECT id, username, password
             FROM " . $this->table_name . "
-            WHERE email = ?
+            WHERE username = ?
             LIMIT 0,1";
- 
+
     $stmt = $this->conn->prepare( $query );
     $this->email=htmlspecialchars(strip_tags($this->email));
     $stmt->bindParam(1, $this->email);
@@ -54,8 +54,7 @@ function emailExists(){
     if($num>0){
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         $this->id = $row['id'];
-        $this->firstname = $row['firstname'];
-        $this->lastname = $row['lastname'];
+        $this->firstname = $row['username'];
         $this->password = $row['password'];
         return true;
     }
