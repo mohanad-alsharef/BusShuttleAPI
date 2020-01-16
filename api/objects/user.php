@@ -1,7 +1,7 @@
 <?php
 class UserObject{
     private $conn;
-    private $table_name = "ul_logins";
+    private $table_name = "users";
     public $id;
     public $firstname;
     public $lastname;
@@ -28,11 +28,11 @@ function create(){
 
     $stmt->bindParam(':firstname', $this->firstname);
     $stmt->bindParam(':lastname', $this->lastname);
-    $stmt->bindParam(':email', $this->email);
- 
+    $stmt->bindParam(':email', $this->email);    
+
     $password_hash = password_hash($this->password, PASSWORD_BCRYPT);
     $stmt->bindParam(':password', $password_hash);
- 
+
     if($stmt->execute()){
         return true;
     }
