@@ -31,7 +31,7 @@ if(isset($postdata) && !empty($postdata))
   $busNumber = mysqli_real_escape_string($con, trim($request->data->busNumber));
   $timestamp = mysqli_real_escape_string($con, trim($request->data->timestamp));
   $date = date("Y/m/d");
-  $beginningHours = mysqli_real_escape_string($con, (int)$request->data->beginningHours);
+  $beginningHours = mysqli_real_escape_string($con, trim($request->data->beginningHours));
   $endingHours = mysqli_real_escape_string($con, trim($request->data->endingHours));
   $startingMileage = mysqli_real_escape_string($con, trim($request->data->startingMileage));
   $endingMileage = mysqli_real_escape_string($con, trim($request->data->endingMileage));
