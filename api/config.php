@@ -10,8 +10,8 @@ define ( 'DB_DBNAME', 'busdb' );
 define ( 'BASE_API_URL', 'http://localhost/BusShuttleAPI/api/' );
 
 // ULOGIN
-define ( 'UL_INC_DIR_GLOBAL', 'C:/xampp/htdocs/BusShuttleAPI/api/ulogin' );
-define ( 'UL_SITE_ROOT_DIR_GLOBAL', 'C:/xampp/htdocs');
+define ( 'UL_INC_DIR_GLOBAL', '../xampp/htdocs/BusShuttleAPI/api/ulogin' );
+define ( 'UL_SITE_ROOT_DIR_GLOBAL', '../xampp/htdocs');
 define ( 'UL_DOMAIN_GLOBAL', 'localhost');
 define ( 'UL_USES_HTTPS', false);
 
