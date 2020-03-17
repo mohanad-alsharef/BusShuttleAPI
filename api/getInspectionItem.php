@@ -20,7 +20,7 @@ if($result = mysqli_query($con,$sql))
   while($row = mysqli_fetch_assoc($result))
   {
       $item[$cr]['id'] = $row['id'];
-      $item[$cr]['inspection_items_name'] = $row['inspection_items_name'];
+      $item[$cr]['inspection_item_name'] = $row['inspection_item_name'];
       $item[$cr]['pre_trip_inspection'] = $row['pre_trip_inspection'];
       $item[$cr]['post_trip_inspection'] = $row['post_trip_inspection'];
     $cr++;
