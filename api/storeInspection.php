@@ -14,7 +14,7 @@ if(isset($postdata) && !empty($postdata))
 {
   // Extract the data.
   $request = json_decode($postdata);
-
+/*
   // Validate.
   if(trim($request->data->driver) === '' || trim($request->data->loop) === ''
   || trim($request->data->busNumber) === '' || trim($request->data->timestamp) === ''
@@ -24,7 +24,7 @@ if(isset($postdata) && !empty($postdata))
   {
     return http_response_code(400);
   }
-  
+  */
   // Sanitize.
   $driver = mysqli_real_escape_string($con, trim($request->data->driver));
   $loop = mysqli_real_escape_string($con, trim($request->data->loop));
