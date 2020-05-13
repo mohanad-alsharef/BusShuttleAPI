@@ -34,12 +34,32 @@ if(isset($postdata) && !empty($postdata))
   $leftBehind = mysqli_real_escape_string($con, trim($request->data->leftBehind));
   $busNumber = mysqli_real_escape_string($con, trim($request->data->busNumber));
 
-  // Store.
-  $sql = "INSERT INTO `entries`(`boarded`,`stop`,`t_stamp`,`date_added`,`loop`,`driver`, `left_behind`, `bus_identifier`)
-  VALUES ('{$boarded}','{$stop}','{$timestamp}','{$date}','{$loop}','{$driver}', '{$leftBehind}', '{$busNumber}')";
 
+  // Check for dublicate
+  $check = mysqli_query($con,"SELECT * FROM `entries` WHERE `boarded`=$boarded AND `stop`=$stop AND `loop`=$loop AND `driver`=$driver AND `left_behind`=$leftBehind AND `bus_identifier`=$busNumber AND `t_stamp`LIKE '$timestamp'");
+  $checkrows=mysqli_num_rows($check);
+
+  // Store.
+  if($checkrows > 0) {
+    http_response_code(201);
+    $log = [
+      'boarded' => $boarded,
+      'stop' => $stop,
+      't_stamp' => $timestamp,
+      'date' => $date,
+      'loop' => $loop,
+      'driver' => $driver,
+      'left_behind' => $leftBehind,
+      'bus_identifier' => $busNumber
+    ];
+    echo json_encode(['data'=>$log]);
+  } else {
+    $sql = "INSERT INTO `entries`(`boarded`,`stop`,`t_stamp`,`date_added`,`loop`,`driver`, `left_behind`, `bus_identifier`)
+  VALUES ('{$boarded}','{$stop}','{$timestamp}','{$date}','{$loop}','{$driver}', '{$leftBehind}', '{$busNumber}')";
   if(mysqli_query($con,$sql))
   {
+    // uncomment sleep to test the duplication porblem
+    //sleep(60);
     http_response_code(201);
     $log = [
       'boarded' => $boarded,
@@ -58,4 +78,8 @@ if(isset($postdata) && !empty($postdata))
     http_response_code(422);
     echo "<script>console.log( 'Could not store object in database' );</script>";
   }
+  }
+  
+
+  
 }
