@@ -37,10 +37,12 @@ if(isset($postdata) && !empty($postdata))
   $endingMileage = mysqli_real_escape_string($con, trim($request->data->endingMileage));
   $preInspection = mysqli_real_escape_string($con, trim($request->data->preInspection));
   $postInspection = mysqli_real_escape_string($con, trim($request->data->postInspection));
+  $preInspectionComment = mysqli_real_escape_string($con, trim($request->data->preInspectionComment));
+  $postInspectionComment = mysqli_real_escape_string($con, trim($request->data->postInspectionComment));
 
   // Store.
-  $sql = "INSERT INTO `inspection_report`(`driver`, `loop`, `bus_identifier`, `t_stamp`,`date_added`,`beginning_hours`,`ending_hours`, `starting_mileage`, `ending_mileage`, `pre_trip_inspection`, `post_trip_inspection` )
-  VALUES ('{$driver}','{$loop}','{$busNumber}', '{$timestamp}','{$date}','{$beginningHours}','{$endingHours}', '{$startingMileage}', '{$endingMileage}', '{$preInspection}', '{$postInspection}')";
+  $sql = "INSERT INTO `inspection_report`(`driver`, `loop`, `bus_identifier`, `t_stamp`,`date_added`,`beginning_hours`,`ending_hours`, `starting_mileage`, `ending_mileage`, `pre_trip_inspection`, `post_trip_inspection`, `pre_comment`, `post_comment` )
+  VALUES ('{$driver}','{$loop}','{$busNumber}', '{$timestamp}','{$date}','{$beginningHours}','{$endingHours}', '{$startingMileage}', '{$endingMileage}', '{$preInspection}', '{$postInspection}', '{$preInspectionComment}', '{$postInspectionComment}')";
 
   if(mysqli_query($con,$sql))
   {
@@ -56,7 +58,9 @@ if(isset($postdata) && !empty($postdata))
       'starting_mileage' => $startingMileage,
       'ending_mileage' => $endingMileage,
       'pre_trip_inspection' => $preInspection,
-      'post_trip_inspection' => $postInspection
+      'post_trip_inspection' => $postInspection,
+      'pre_comment' => $preInspectionComment,
+      'post_comment' => $postInspectionComment
       
     ];
     echo json_encode(['data'=>$log]);
